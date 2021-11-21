@@ -1,25 +1,27 @@
 {
-  "name": "learn_with_code",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "learn-in-web",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build:live",
-    "build": "tsc -p .",
-    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/node": "^16.11.6",
-    "nodemon": "^2.0.14",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.4.4"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@heroicons/react": "^1.0.5",
+    "axios": "^0.24.0",
+    "next": "12.0.4",
+    "next-auth": "^3.29.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "semantic-ui-react": "^2.0.4",
+    "swr": "^1.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.4",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19"
   }
 }
