@@ -19,7 +19,7 @@ export const newPost = async (title, content, privat) => {
 }
 
 export const getPostbyId = async (id) => {
-    const response = await axios.get(`${SERVERBASE_URL}/post/${id}`);
+    const response = await axios.get(`${SERVER_BASE_URL}/post/${id}`);
     if (response.status !== 200) {
         throw new Error('Failed to get post!');
     }

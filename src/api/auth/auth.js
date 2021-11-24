@@ -13,6 +13,7 @@ export const login = async (email, password) => {
     }
     console.log(response.data.access_token)
     useSession.accessToken = response.data.access_token;
+    console.log("로그인" + useSession.accessToken);
     return response.data;
 }
 
@@ -56,6 +57,7 @@ export const refreshToken = async () => {
 }
 
 export const validateToken = async () => {
+    console.log(useSession.accessToken);
     const response = await axios.post(`${SERVER_BASE_URL}/auth/validate`, {
         token: useSession.accessToken,
     });
