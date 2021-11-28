@@ -2,7 +2,7 @@ import { useRouter } from "next/dist/client/router"
 import { getPostbyId } from "../../api/post"
 import "@uiw/react-textarea-code-editor/dist.css";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "semantic-ui-react";
 
 const CodeEditor = dynamic(
@@ -12,8 +12,18 @@ const CodeEditor = dynamic(
 
 export default function Post() {
     const router = useRouter()
-    const { id } = router.query
-    const post = getPostbyId(id)
+
+    const [post, setPost] = useState({})
+
+    useEffect(() => {
+        if (!router.isReady) return;
+        const { id } = router.query
+        getPostbyId(id).then(res => {
+            setPost(res)
+        })
+    }, [router.isReady]);
+
+    console.log(post);
 
     const [value, setValue] = useState("c");
 
@@ -25,8 +35,10 @@ export default function Post() {
 
     return (
         <div>
-            <p>{post.title}</p>
-            <p>{post.body}</p>
+            <h1>{post.title}</h1>
+            <p>{post.explain}</p>
+            <p>{post.testinput}</p>
+            <p>{post.testoutput}</p>
             <select value={value} onChange={(e) => setValue(e.target.value)}>
                 <option value="c">c</option>
                 <option value="cpp">cpp</option>
@@ -46,6 +58,7 @@ export default function Post() {
                 }}
             />
             <Button onClick={runCode}>Run</Button>
+            <p>{post.example}</p>
         </div>
     )
 }

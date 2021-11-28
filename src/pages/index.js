@@ -1,5 +1,6 @@
-import {Header} from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import Head from 'next/head'
+import Popular from '../components/Popular'
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       </Head>
       {/* 기본 컨텐츠 */}
       <Header as='h3' textAlign='center'>인기 문제</Header>
-      
+      <Popular />
     </div>
   )
 }
