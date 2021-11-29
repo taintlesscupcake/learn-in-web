@@ -4,6 +4,7 @@ import "@uiw/react-textarea-code-editor/dist.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Button } from "semantic-ui-react";
+import { run } from "../../api/runner";
 
 const CodeEditor = dynamic(
     () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
@@ -29,14 +30,17 @@ export default function Post() {
 
     const [code, setCode] = useState("");
 
-    const runCode = () => {
-        Runner.run(code, value);
+    const [answer, setAnswer] = useState("asdf");
+
+    const runCode = async function () {
+        var result = await run(code, value);
+        console.log(result);
+        setAnswer(`출력 : ${result}`);
     }
 
     return (
         <div>
-            <h1>{post.title}</h1>
-            <p>{post.explain}</p>
+            <h3 className="text-3xl font-bold">{post.title}</h3>
             <p>{post.testinput}</p>
             <p>{post.testoutput}</p>
             <select value={value} onChange={(e) => setValue(e.target.value)}>
@@ -44,20 +48,29 @@ export default function Post() {
                 <option value="cpp">cpp</option>
                 <option value="js">javascript</option>
             </select>
-            <CodeEditor
-                value={code}
-                language={value}
-                placeholder="Please Enter the Code."
-                onChange={(e) => setCode(e.target.value)}
-                padding={15}
-                style={{
-                    fontSize: 12,
-                    backgroundColor: "#f5f5f5",
-                    fontFamily:
-                        "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
-                }}
-            />
-            <Button onClick={runCode}>Run</Button>
+            <span className="left-100 fixed text-2xl font-semibold">문제 설명</span>
+            <br></br>
+            <div className="w-6/12 inline-block">
+                <CodeEditor
+                    value={code}
+                    language={value}
+                    placeholder="Please Enter the Code."
+                    onChange={(e) => setCode(e.target.value)}
+                    padding={15}
+                    style={{
+                        fontSize: 15,
+                        backgroundColor: "#f5f5f5",
+                        fontFamily:
+                            "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
+                    }}
+                    className="w-8/12 h-96 rounded"
+
+                />
+            </div>
+            <div className="w-6/12 inline-block align-top">{post.explain}</div>
+            <Button onClick={runCode} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Run</Button>
+            <p>{runCode}</p>
+            
             <p>{post.example}</p>
         </div>
     )

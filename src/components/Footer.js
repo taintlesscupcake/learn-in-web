@@ -1,6 +1,10 @@
 function Footer() {
     return (
-        <div>Copyright @ SungJin. All right reserved.</div>
+        <div className="footer">
+            <span>Copyright @ </span>
+            <a href="https://github.com/taintlesscupcake" className="to-blue-400">SungJin</a>
+            <span>. All right reserved.</span>
+        </div >
     )
 }
 

@@ -11,8 +11,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* 기본 컨텐츠 */}
-      <Header as='h3' textAlign='center'>인기 문제</Header>
-      <Popular />
+      <div className='ui container fixed left-10'>
+        <h3 className="text-3xl font-bold">인기 문제</h3>
+        <Popular />
+      </div>
     </div>
   )
 }

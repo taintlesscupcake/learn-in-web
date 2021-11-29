@@ -12,6 +12,7 @@ import Islogin from "./islogin"
 import Link from "next/link"
 
 function Header() {
+
     return (
         <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
             <Link href="/" passHref>
@@ -20,14 +21,13 @@ function Header() {
                     <p className="text-7xl font-extrabold" >Learn In Web</p>
                 </div></Link>
             <div className="flex flex-grow justify-evenly max-w-sm">
-                <HeaderItem title='HOME' Icon={HomeIcon} />
-                <HeaderItem title='STAR' Icon={StarIcon} />
-                <HeaderItem title='SEARCH' Icon={SearchIcon} />
-                <HeaderItem title='ACCOUNT' Icon={UserIcon} />
+                <HeaderItem title='HOME' Icon={HomeIcon} link="/" />
+                <HeaderItem title='STAR' Icon={StarIcon} link="/" />
+                <HeaderItem title='SEARCH' Icon={SearchIcon} link="/" />
+                <HeaderItem title='ACCOUNT' Icon={UserIcon} link="/" />
+                <Islogin />
             </div>
-            <Islogin />
         </header>
-
     )
 }
 

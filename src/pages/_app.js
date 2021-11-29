@@ -6,8 +6,10 @@ import Footer from '../components/Footer'
 function MyApp({ Component, pageProps }) {
   return (
     <div>
-      <Header />
-      <Nav />
+      <div className="main">
+        <Header />
+        <Nav />
+      </div>
       <Component {...pageProps} />
       <Footer />
     </div>
