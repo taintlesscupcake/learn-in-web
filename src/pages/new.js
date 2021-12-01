@@ -10,7 +10,8 @@ export default function New() {
         const example = form.example.value;
         const testinput = form.testinput.value.split("\n");
         const testoutput = form.testoutput.value.split("\n");
-        const post = await newPost(title, explain, example, testinput, testoutput);
+        const difficulty = form.level.value;
+        const post = await newPost(title, explain, example, testinput, testoutput, difficulty);
         console.log(post);
     };
     return (

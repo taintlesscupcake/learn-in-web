@@ -8,6 +8,7 @@ export const newPost = async (
     example,
     testinput,
     testoutput,
+    difficulty,
 ) => {
     if (!auth.validateToken()) {
         throw new Error("plz login");
@@ -19,6 +20,7 @@ export const newPost = async (
         example,
         testinput,
         testoutput,
+        difficulty,
     });
     if (response.status !== 200 && response.status !== 201) {
         throw new Error('Failed to create new post!');
