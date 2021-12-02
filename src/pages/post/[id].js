@@ -24,8 +24,6 @@ export default function Post() {
         })
     }, [router.isReady]);
 
-    console.log(post);
-
     const [value, setValue] = useState("c");
 
     const [code, setCode] = useState("");
@@ -47,6 +45,9 @@ export default function Post() {
                 <option value="c">c</option>
                 <option value="cpp">cpp</option>
                 <option value="js">javascript</option>
+                <option value="ts">typescript</option>
+                <option value="go">golang</option>
+                <option value="py">python</option>
             </select>
             <span className="left-100 fixed text-2xl font-semibold">문제 설명</span>
             <br></br>
@@ -69,7 +70,7 @@ export default function Post() {
             </div>
             <div className="w-6/12 inline-block align-top">{post.explain}</div>
             <Button onClick={runCode} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Run</Button>
-            <p>{runCode}</p>
+            <div className="">{answer}</div>
             
             <p>{post.example}</p>
         </div>

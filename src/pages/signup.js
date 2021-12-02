@@ -29,5 +29,8 @@ function handleSubmit(event) {
     if(!signup) {
         alert("Signup failed");
     }
-    return push("/");
+    else {
+        alert("Signup success");
+        return push("/");
+    }
 }

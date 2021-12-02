@@ -1,14 +1,16 @@
-import { Link } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import { getPosts } from "../api/post";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Popular() {
     const [posts, setPosts] = useState([]);
+    const router = useRouter();
     useEffect(() => {
         getPosts(10).then(setPosts);
     }, []);
-    
+
     const DateType = (date) => {
         console.log(date);
         const dateObj = new Date(date);
@@ -22,9 +24,10 @@ export default function Popular() {
             <ul>
                 {posts.map(post => (
                     <li key={post.id}>
-                        <Link href={`/post/${post.id}`} className="text-xl">
+                        <a onClick={() => router.push(`/post/${post.id}`)} className="cursor-pointer transition
+                        duration-100 transform hover:text-white text-2xl">
                             <a>{post.title}</a>
-                        </Link>
+                        </a>
                         <span className="float-right">{DateType(post.createdAt)}</span>
                     </li>
                 ))}

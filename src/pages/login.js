@@ -26,7 +26,10 @@ export default function Login() {
         if(!login) {
             alert("Login failed");
         }
-        return router.push("/");
+        else {
+            alert("Login success");
+            return router.push("/");
+        }
     }
 }
 
