@@ -39,8 +39,7 @@ export const signup = async (name, email, password) => {
 }
 
 export const logout = async () => {
-    1
-    useSession.accessToken = null;
+    useSession.accessToken = undefined;
     return true;
 }
 

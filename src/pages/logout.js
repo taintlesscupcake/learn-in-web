@@ -3,8 +3,10 @@ import { useRouter } from "next/router";
 
 
 export default function Logout () {
-    const router = useRouter();
-    logout();
-    router.push("/");
-    return <div>Logging out...</div>;
+    const handleLogout = () => {
+        logout();
+        return <div>Logged out. Go to main page.</div>
+    }
+    
+    return handleLogout();
 }
