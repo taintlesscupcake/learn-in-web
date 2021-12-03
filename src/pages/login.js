@@ -1,19 +1,22 @@
 import { useRouter } from "next/router";
+import { Button } from "semantic-ui-react";
 import * as auth from "../api/auth";
 
 export default function Login() {
     const router = useRouter();
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" />
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" />
-                <button type="submit">Login</button>
-            </form>
+        <div className="flex h-auto">
+            <div className="w-auto inline-block p-3 bg-black rounded-lg m-auto">
+                <h1 className="font-bold text-4xl text-center">로그인</h1>
+                <form onSubmit={handleSubmit}>
+                    <input type="email" id="email" placeholder="email" className="my-2 rounded-sm"/>
+                    <br />
+                    <input type="password" id="password" className="my-2 rounded-sm" placeholder="password" />
+                    <br />
+                    <button type="submit" className="mt-2 px-4 py-2 text-base font-semibold text-white transition duration-500 transform bg-blue-300 rounded-lg hover:shadow-lg focus:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-blue-300 motion-reduce:transform-none hover:scale-105 tramsform">Login</button>
+                </form>
+            </div>
         </div>
     );
 
@@ -23,7 +26,7 @@ export default function Login() {
         const email = form.email.value;
         const password = form.password.value;
         const login = await auth.login(email, password);
-        if(!login) {
+        if (!login) {
             alert("Login failed");
         }
         else {

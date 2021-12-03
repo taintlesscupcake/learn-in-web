@@ -14,7 +14,7 @@ import Link from "next/link"
 function Header() {
 
     return (
-        <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
+        <header className="flex flex-col sm:flex-row m-5 mt-0 pt-5 justify-between items-center">
             <Link href="/" passHref>
                 <div className="flex cursor-pointer transform hover:scale-105">
                     <CubeIcon className="h-20" />

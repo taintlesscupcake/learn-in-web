@@ -1,10 +1,12 @@
 import { useRouter } from "next/dist/client/router"
-import { getPostbyId } from "../../api/post"
+import { createComment, getPostbyId } from "../../api/post"
 import "@uiw/react-textarea-code-editor/dist.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Button } from "semantic-ui-react";
 import { run } from "../../api/runner";
+import { useSession } from "next-auth/client";
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 const CodeEditor = dynamic(
     () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
@@ -20,6 +22,7 @@ export default function Post() {
         if (!router.isReady) return;
         const { id } = router.query
         getPostbyId(id).then(res => {
+            console.log(res);
             setPost(res)
         })
     }, [router.isReady]);
@@ -28,16 +31,45 @@ export default function Post() {
 
     const [code, setCode] = useState("");
 
-    const [answer, setAnswer] = useState("asdf");
+    const [answer, setAnswer] = useState("Answer Test");
+
+    const [comment, setComment] = useState("");
+
+    const addComment = async () => {
+        const { id } = router.query
+        const response = await createComment(id, comment)
+    }
+
+    const displayComment = () => {
+        console.log(post.comments);
+        if (post.comments != undefined) {
+            return post.comments.map(comment => (
+                <div className="w-full">
+                    <div className="w-full flex justify-between">
+                        <div className="w-1/2">
+                            <span className="text-gray-700">{comment.username}</span>
+                        </div>
+                    </div>
+                </div>)
+            )
+        }
+        return <div></div>
+    }
+
 
     const runCode = async function () {
+        if (useSession.accessToken == null) {
+            alert("You need to login first!")
+            router.push("/login")
+            return;
+        }
         var result = await run(code, value);
         console.log(result);
         setAnswer(`출력 : ${result}`);
     }
 
     return (
-        <div>
+        <div className="ml-10 mr-10">
             <h3 className="text-3xl font-bold">{post.title}</h3>
             <p>{post.testinput}</p>
             <p>{post.testoutput}</p>
@@ -49,7 +81,7 @@ export default function Post() {
                 <option value="go">golang</option>
                 <option value="py">python</option>
             </select>
-            <span className="left-100 fixed text-2xl font-semibold">문제 설명</span>
+            <span className="absolute left-1/2 text-2xl font-semibold">문제 설명</span>
             <br></br>
             <div className="w-6/12 inline-block">
                 <CodeEditor
@@ -64,15 +96,24 @@ export default function Post() {
                         fontFamily:
                             "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
                     }}
-                    className="w-8/12 h-96 rounded"
+                    className="w-8/12 min-h-[24rem] rounded"
 
                 />
             </div>
             <div className="w-6/12 inline-block align-top">{post.explain}</div>
             <Button onClick={runCode} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Run</Button>
             <div className="">{answer}</div>
-            
-            <p>{post.example}</p>
+            <details>
+                <summary>예시 코드 보기</summary>
+                <SyntaxHighlighter language="cpp">
+                    {post.example || "Loading Example..."}
+                </SyntaxHighlighter>
+            </details>
+            <div>
+                <textarea className="w-full h-24" placeholder="Write your comment..." value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={addComment}>댓글 쓰기</button>
+                {displayComment()}
+            </div>
         </div>
     )
 }

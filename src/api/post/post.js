@@ -1,6 +1,7 @@
 import * as auth from '../auth'
 import axios from 'axios';
 import { SERVER_BASE_URL } from '..';
+import { useSession } from 'next-auth/client';
 
 export const newPost = async (
     title,
@@ -55,5 +56,16 @@ export const getPostsByDifficulty = async (difficulty) => {
         throw new Error('Failed to get posts!');
     }
     console.log(response.data);
+    return response.data;
+}
+
+export const createComment = async (id, content) => {
+    const response = await axios.post(`${SERVER_BASE_URL}/post/comment/${id}`, {
+        token : useSession.accessToken,
+        content,
+    });
+    if (response.status !== 200 && response.status !== 201) {
+        throw new Error('Failed to create comment!');
+    }
     return response.data;
 }

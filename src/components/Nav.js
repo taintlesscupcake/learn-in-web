@@ -25,20 +25,20 @@ export default function Nav() {
             <div className="flex px-10 sm:px-20 text-2xl whitespace-nowrap
             space-x-10 sm:space-x-20">
                 <Button onClick={moverun} className="cursor-pointer transition
-                        duration-100 transform hover:scale-125 hover:text-white
-                        active:text-blue-500">테스트</Button>
+                        duration-100 transform hover:scale-125 hover:text-black
+                        active:text-white">테스트</Button>
                 <Button onClick={movelow} className="cursor-pointer transition
-                        duration-100 transform hover:scale-125 hover:text-white
-                        active:text-blue-500">난이도 하</Button>
+                        duration-100 transform hover:scale-125 hover:text-black
+                        active:text-white">난이도 하</Button>
                 <Button onClick={movemed} className="cursor-pointer transition
-                        duration-100 transform hover:scale-125 hover:text-white
-                        active:text-blue-500">난이도 중</Button>
+                        duration-100 transform hover:scale-125 hover:text-black
+                        active:text-white">난이도 중</Button>
                 <Button onClick={movehigh} className="cursor-pointer transition
-                        duration-100 transform hover:scale-125 hover:text-white
-                        active:text-blue-500">난이도 상</Button>
+                        duration-100 transform hover:scale-125 hover:text-black
+                        active:text-white">난이도 상</Button>
                 <Button onClick={movenew} className="cursor-pointer transition
-                        duration-100 transform hover:scale-125 hover:text-white
-                        active:text-blue-500">문제 만들기</Button>
+                        duration-100 transform hover:scale-125 hover:text-black
+                        active:text-white">문제 만들기</Button>
             </div>
         </nav>
     )
