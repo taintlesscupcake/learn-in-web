@@ -36,22 +36,24 @@ export default function Post() {
     const [comment, setComment] = useState("");
 
     const addComment = async () => {
+        console.log("comment is " + comment);
         const { id } = router.query
-        const response = await createComment(id, comment)
+        await createComment(id, comment)
     }
 
     const displayComment = () => {
         console.log(post.comments);
         if (post.comments != undefined) {
             return post.comments.map(comment => (
-                <div className="w-full">
-                    <div className="w-full flex justify-between">
-                        <div className="w-1/2">
-                            <span className="text-gray-700">{comment.username}</span>
+                <div className="flex w-full border-carbon border-4 rounded-xl my-2">
+                    <div className="w-full justify-between">
+                        <div className=" mx-2">
+                            <p className="text-black w-[90%]">{comment.content}</p>
+                            <span className="text-black float-right">{`작성자 : ${comment.author.name}`}</span>
                         </div>
                     </div>
-                </div>)
-            )
+                </div>
+            ));
         }
         return <div></div>
     }

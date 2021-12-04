@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/client';
 
 export const run = async (code, type) => {
     if (!auth.validateToken()) {
-        throw new Error("plz login");
+        throw alert("Please login first.");
     }
     const response = await axios.post(`${SERVER_BASE_URL}/runner`, {
         token: auth.getToken(),

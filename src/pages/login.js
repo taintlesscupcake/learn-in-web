@@ -7,7 +7,7 @@ export default function Login() {
 
     return (
         <div className="flex h-auto">
-            <div className="w-auto inline-block p-3 bg-black rounded-lg m-auto">
+            <div className="w-auto inline-block p-3 rounded-lg m-auto">
                 <h1 className="font-bold text-4xl text-center">로그인</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="email" id="email" placeholder="email" className="my-2 rounded-sm"/>

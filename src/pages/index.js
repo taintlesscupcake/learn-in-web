@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* 기본 컨텐츠 */}
-      <div className='ui container fixed left-10'>
+      <div className='ui container relative left-10'>
         <h3 className="text-3xl font-bold">인기 문제</h3>
         <Popular />
       </div>

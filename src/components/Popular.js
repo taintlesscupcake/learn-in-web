@@ -26,7 +26,7 @@ export default function Popular() {
                     <li key={post.id}>
                         <a onClick={() => router.push(`/post/${post.id}`)} className="cursor-pointer transition
                         duration-100 transform hover:text-white text-2xl">
-                            <a>{post.title}</a>
+                            {post.title}
                         </a>
                         <span className="float-right">{DateType(post.createdAt)}</span>
                     </li>

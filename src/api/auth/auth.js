@@ -66,6 +66,9 @@ export const refreshToken = async () => {
 
 export const validateToken = async () => {
     console.log(useSession.accessToken);
+    if(useSession.accessToken == undefined){
+        return false;
+    }
     const response = await axios.post(`${SERVER_BASE_URL}/auth/validate`, {
         token: useSession.accessToken,
     }).catch(err => {

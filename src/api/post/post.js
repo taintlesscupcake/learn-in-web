@@ -12,7 +12,7 @@ export const newPost = async (
     difficulty,
 ) => {
     if (!auth.validateToken()) {
-        throw new Error("plz login");
+        throw alert("Please login first.");
     }
     const response = await axios.post(`${SERVER_BASE_URL}/post`, {
         token: auth.getToken(),
@@ -60,6 +60,9 @@ export const getPostsByDifficulty = async (difficulty) => {
 }
 
 export const createComment = async (id, content) => {
+    if (!await auth.validateToken()) {
+        throw alert("Please login first.");
+    }
     const response = await axios.post(`${SERVER_BASE_URL}/post/comment/${id}`, {
         token : useSession.accessToken,
         content,
