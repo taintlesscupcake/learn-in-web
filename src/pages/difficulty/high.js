@@ -12,7 +12,6 @@ export default function Popular() {
     }, []);
 
     const DateType = (date) => {
-        console.log(date);
         const dateObj = new Date(date);
         const month = dateObj.toLocaleString("default", { month: "long" });
         const day = dateObj.getDate();

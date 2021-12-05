@@ -1,12 +1,12 @@
 import { searchPost } from "../api/post/post";
 import { useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
+import { Link } from "@nextui-org/react";
 
 export default function Search() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const search = await searchPost(e.target.search.value);
-        console.log(search)
         setResult(search);
     }
 
@@ -24,9 +24,9 @@ export default function Search() {
                 <h1 className="text-2xl font-bold">Search Result</h1>
                 {result.map((post) => {
                     return (
-                        <div>
-                            <h2>{post.title}</h2>
-                        </div>
+                        <Link href={`/post/${post.id}`}>
+                            <h2 className="text-xl">{post.title}</h2>
+                        </Link>
                     )
                 })}
             </div>
