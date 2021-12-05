@@ -72,3 +72,13 @@ export const createComment = async (id, content) => {
     }
     return response.data;
 }
+
+export const searchPost = async (search) => {
+    const response = await axios.post(`${SERVER_BASE_URL}/post/search/`, {
+        search,
+    });
+    if (response.status !== 200 && response.status !== 201) {
+        throw new Error('Failed to get posts!');
+    }
+    return response.data;
+}
