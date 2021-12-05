@@ -8,7 +8,7 @@ export default function Popular() {
     const [posts, setPosts] = useState([]);
     const router = useRouter();
     useEffect(() => {
-        getPostsByDifficulty(2).then(setPosts);
+        getPostsByDifficulty(3).then(setPosts);
     }, []);
 
     const DateType = (date) => {
