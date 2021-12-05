@@ -25,25 +25,23 @@ export default function New() {
         console.log(post);
     };
     return (
-        <div>
-            <h1>New Post</h1>
+        <div className=" mx-10">
             <form onSubmit={makePost}>
-                <label>제목</label>
-                <input type="text" id="title" />
+                <input type="text" className=" w-[90%] text-2xl p-2 mb-4 bg-[#f5f5f5]" id="title" placeholder="제목" />
                 <select id="level" defaultValue="1">
                     <option value="1">LOW</option>
                     <option value="2">MEDIUM</option>
                     <option value="3">HIGH</option>
                 </select>
-                <label>문제 설명</label>
-                <textarea id="explain"></textarea><br />
-                <label>예시 코드 (C++언어로 작성해야 합니다.)</label>
+                <br />
+                <textarea id="explain" className=" w-full p-2 bg-[#f5f5f5] max-h-96 h-[300px]" placeholder="문제 설명"></textarea><br />
                 <CodeEditor
                     value={code}
                     language="cpp"
-                    placeholder="Please enter example code."
+                    placeholder="예시 코드 (C++언어로 작성해야 합니다.)"
                     onChange={(evn) => setCode(evn.target.value)}
                     padding={15}
+                    className="mb-4"
                     style={{
                         fontSize: 12,
                         backgroundColor: "#f5f5f5",
@@ -51,11 +49,11 @@ export default function New() {
                             "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
                     }}
                 />
-                <label>예시 입력(Enter로 구분)</label>
-                <textarea id="testinput"></textarea>
-                <label>예시 출력(Enter로 구분)</label>
-                <textarea id="testoutput"></textarea><br />
-                <button type="submit">제출</button>
+                <textarea id="testinput" className=" w-full p-2  bg-[#f5f5f5] mb-4 h-[100px]" placeholder="예시 입력(Enter로 구분)"></textarea>
+                <br />
+                <textarea id="testoutput" className=" w-full p-2  bg-[#f5f5f5] mb-4 h-[100px]" placeholder="예시 출력(Enter로 구분)"></textarea>
+                <br />
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">제출</button>
             </form>
         </div>
     );
