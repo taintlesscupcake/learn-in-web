@@ -7,6 +7,8 @@ import { Button } from "semantic-ui-react";
 import { run } from "../../api/runner";
 import { useSession } from "next-auth/client";
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { ThumbUpIcon } from "@heroicons/react/solid";
+import { likePost } from "../../api/post";
 
 const CodeEditor = dynamic(
     () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
@@ -70,6 +72,16 @@ export default function Post() {
         setAnswer(`출력 : ${result}`);
     }
 
+    const like = async () => {
+        if (useSession.accessToken == null) {
+            alert("You need to login first!")
+            router.push("/login")
+            return;
+        }
+        const { id } = router.query
+        setPost(await likePost(id));
+    }
+
     return (
         <div className="ml-10 mr-10">
             <h3 className="text-3xl font-bold">{post.title}</h3>
@@ -102,7 +114,14 @@ export default function Post() {
 
                 />
             </div>
-            <div className="w-6/12 inline-block align-top">{post.explain}</div>
+            <div className="w-6/12 inline-block align-top">
+                <div className="w-full">{post.explain}</div>
+                <Button className="bg-blue-500 rounded-full p-1 text-white " onClick={like}>
+                    <ThumbUpIcon className="h-5 inline-block mb-1 "></ThumbUpIcon>
+                    <span>{` Likes : ${post.likes}`}</span>
+                </Button>
+            </div>
+
             <Button onClick={runCode} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Run</Button>
             <div className="">{answer}</div>
             <details>

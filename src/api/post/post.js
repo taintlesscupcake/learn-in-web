@@ -72,3 +72,16 @@ export const createComment = async (id, content) => {
     }
     return response.data;
 }
+
+export const likePost = async (id) => {
+    if (!await auth.validateToken()) {
+        throw alert("Please login first.");
+    }
+    const response = await axios.post(`${SERVER_BASE_URL}/post/like/${id}`, {
+        token: auth.getToken(),
+    });
+    if (response.status !== 200 && response.status !== 201) {
+        throw new Error('Failed to like post!');
+    }
+    return response.data;
+}
