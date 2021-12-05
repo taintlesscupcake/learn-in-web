@@ -3,6 +3,8 @@ import { newPost } from "../api/post";
 import React from "react";
 import dynamic from "next/dynamic";
 import "@uiw/react-textarea-code-editor/dist.css";
+import { useRouter } from "next/dist/client/router";
+import { useSession } from "next-auth/client";
 
 const CodeEditor = dynamic(
     () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
@@ -12,7 +14,15 @@ const CodeEditor = dynamic(
 export default function New() {
     const [code, setCode] = React.useState("");
 
+    
+
+    const router = useRouter();
+
     async function makePost(event) {
+        if(useSession.accessToken == undefined) {
+            router.push("/login");
+            throw alert("Please Login first!");
+        }
         event.preventDefault();
         const form = event.target;
         const title = form.title.value;
@@ -23,6 +33,7 @@ export default function New() {
         const difficulty = form.level.value;
         const post = await newPost(title, explain, example, testinput, testoutput, difficulty);
         console.log(post);
+        router.push("/");
     };
     return (
         <div className=" mx-10">

@@ -31,7 +31,7 @@ export default function Post() {
 
     const [code, setCode] = useState("");
 
-    const [answer, setAnswer] = useState("Answer Test");
+    const [answer, setAnswer] = useState("");
 
     const [comment, setComment] = useState("");
 
@@ -70,11 +70,49 @@ export default function Post() {
         setAnswer(`출력 : ${result}`);
     }
 
+    const testinput = () => {
+        const insert = post.testinput;
+        console.log("insert = " + insert);
+        if (insert === [""] || insert === undefined) {
+            console.log("없음");
+            return <div></div>
+        }
+        return <div>
+            <p>예시 입력</p>
+            {insert.map(data => {
+                return <p>{data}</p>;
+            })}
+        </div>
+    }
+
+    const testoutput = () => {
+        const insert = post.testoutput;
+        console.log("insert = " + insert);
+        if (insert === [""] || insert === undefined) {
+            console.log("없음");
+            return <div></div>
+        }
+        return <div>
+            <p>예시 출력</p>
+            {insert.map(data => {
+                return <p>{data}</p>;
+            })}
+        </div>
+    }
+
+    const explain = () => {
+        if (post.explain === undefined) {
+            return <div></div>
+        }
+        return <div>{post.explain.split("\n").map(data => {
+            return <p>{data}</p>;
+        })}
+        </div>
+    }
+
     return (
         <div className="ml-10 mr-10">
             <h3 className="text-3xl font-bold">{post.title}</h3>
-            <p>{post.testinput}</p>
-            <p>{post.testoutput}</p>
             <select value={value} onChange={(e) => setValue(e.target.value)}>
                 <option value="c">c</option>
                 <option value="cpp">cpp</option>
@@ -83,7 +121,7 @@ export default function Post() {
                 <option value="go">golang</option>
                 <option value="py">python</option>
             </select>
-            <span className="absolute left-1/2 text-2xl font-semibold">문제 설명</span>
+            <span className=" sticky left-1/2 text-2xl font-semibold">문제 설명</span>
             <br></br>
             <div className="w-6/12 inline-block">
                 <CodeEditor
@@ -102,7 +140,7 @@ export default function Post() {
 
                 />
             </div>
-            <div className="w-6/12 inline-block align-top">{post.explain}</div>
+            <div className="w-6/12 inline-block align-top">{explain()}</div>
             <Button onClick={runCode} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Run</Button>
             <div className="">{answer}</div>
             <details>
@@ -110,6 +148,8 @@ export default function Post() {
                 <SyntaxHighlighter language="cpp">
                     {post.example || "Loading Example..."}
                 </SyntaxHighlighter>
+                <div className="w-1/2 inline-block p-2">{testinput()}</div>
+                <div className="w-1/2 inline-block p-2">{testoutput()}</div>
             </details>
             <div>
                 <textarea className="w-full h-24" placeholder="Write your comment..." value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
