@@ -55,7 +55,6 @@ export const getPostsByDifficulty = async (difficulty) => {
     if (response.status !== 200) {
         throw new Error('Failed to get posts!');
     }
-    console.log(response.data);
     return response.data;
 }
 

@@ -22,7 +22,6 @@ export default function Post() {
         if (!router.isReady) return;
         const { id } = router.query
         getPostbyId(id).then(res => {
-            console.log(res);
             setPost(res)
         })
     }, [router.isReady]);
@@ -36,13 +35,14 @@ export default function Post() {
     const [comment, setComment] = useState("");
 
     const addComment = async () => {
-        console.log("comment is " + comment);
         const { id } = router.query
-        await createComment(id, comment)
+        await createComment(id, comment);
+        getPostbyId(id).then(res => {
+            setPost(res)
+        })
     }
 
     const displayComment = () => {
-        console.log(post.comments);
         if (post.comments != undefined) {
             return post.comments.map(comment => (
                 <div className="flex w-full border-carbon border-4 rounded-xl my-2">
@@ -66,15 +66,12 @@ export default function Post() {
             return;
         }
         var result = await run(code, value);
-        console.log(result);
         setAnswer(`출력 : ${result}`);
     }
 
     const testinput = () => {
         const insert = post.testinput;
-        console.log("insert = " + insert);
         if (insert === [""] || insert === undefined) {
-            console.log("없음");
             return <div></div>
         }
         return <div>
@@ -87,9 +84,7 @@ export default function Post() {
 
     const testoutput = () => {
         const insert = post.testoutput;
-        console.log("insert = " + insert);
         if (insert === [""] || insert === undefined) {
-            console.log("없음");
             return <div></div>
         }
         return <div>

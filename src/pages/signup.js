@@ -32,7 +32,6 @@ export default function Signup() {
         const email = form.email.value;
         const password = form.password.value;
         const passwordConfirm = form.passwordConfirm.value;
-        console.log(name, email, password, passwordConfirm);
         if (password !== passwordConfirm) {
             alert("Passwords do not match");
             return;

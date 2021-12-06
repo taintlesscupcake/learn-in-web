@@ -3,9 +3,6 @@ import router from "next/router"
 import { Button } from "semantic-ui-react"
 
 export default function Nav() {
-    const moverun = () => {
-        router.push("/run")
-    }
 
     const movenew = () => {
         router.push("/new")
@@ -24,9 +21,6 @@ export default function Nav() {
         <nav className="navbar">
             <div className="flex px-10 sm:px-20 text-2xl whitespace-nowrap
             space-x-10 sm:space-x-20">
-                <Button onClick={moverun} className="cursor-pointer transition
-                        duration-100 transform hover:scale-125 hover:text-black
-                        active:text-white">테스트</Button>
                 <Button onClick={movelow} className="cursor-pointer transition
                         duration-100 transform hover:scale-125 hover:text-black
                         active:text-white">난이도 하</Button>

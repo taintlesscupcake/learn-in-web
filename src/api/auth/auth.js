@@ -15,9 +15,7 @@ export const login = async (email, password) => {
     if (response == undefined || (response.status !== 200 && response.status !== 201)) {
         throw alert('Login failed!');
     }
-    console.log(response.data.access_token)
     useSession.accessToken = response.data.access_token;
-    console.log("로그인" + useSession.accessToken);
     return response.data;
 }
 
@@ -65,7 +63,6 @@ export const refreshToken = async () => {
 }
 
 export const validateToken = async () => {
-    console.log(useSession.accessToken);
     if(useSession.accessToken == undefined){
         return false;
     }

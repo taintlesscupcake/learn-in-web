@@ -32,7 +32,6 @@ export default function New() {
         const testoutput = form.testoutput.value.split("\n");
         const difficulty = form.level.value;
         const post = await newPost(title, explain, example, testinput, testoutput, difficulty);
-        console.log(post);
         router.push("/");
     };
     return (
