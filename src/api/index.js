@@ -1,1 +1,1 @@
-export const SERVER_BASE_URL = 'LOCAL_SERVER_BASE_URL';
+export const SERVER_BASE_URL = 'https://do.sungjin.dev';
