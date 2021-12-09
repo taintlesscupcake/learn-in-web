@@ -23,7 +23,7 @@
 
 <div align="center">
   <a href="http://khuhub.khu.ac.kr/2021105619/learn_in_web">
-    <img src="logo.svg" alt="Logo" width="80" height="80">
+    <img src="logo.png" alt="Logo" width="80" height="80">
   </a>
 <h3 align="center">Learn In Web</h3>
 
